@@ -61,6 +61,8 @@ python3.11 --version
 mysql --version
 ```
 
+If `python3.11` is unavailable on the machine, `python3` is also acceptable as long as it points to Python 3.11.
+
 ## Database Setup
 Start MySQL first, then create the database and user used by the project.
 
@@ -83,6 +85,7 @@ mysql+pymysql://expense_user:expense_password@localhost:3306/expense_tracker
 ```
 
 If your MySQL username, password, or port is different, update `DATABASE_URL` in `.env`.
+If MySQL is already installed locally with different credentials, do not recreate the sample user unnecessarily; just set `DATABASE_URL` to match the existing local MySQL configuration.
 
 ## Quick Start
 1. Backend setup:
