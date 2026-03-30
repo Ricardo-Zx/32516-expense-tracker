@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Lunch",
+    "category": "Food",
+    "amount": 18.5,
+    "expense_date": "2026-03-01",
+    "description": "Campus cafeteria"
+  },
+  {
+    "title": "Bus Card Top-up",
+    "category": "Transport",
+    "amount": 30.0,
+    "expense_date": "2026-03-01",
+    "description": "Weekly commute"
+  },
+  {
+    "title": "Electricity Bill",
+    "category": "Utilities",
+    "amount": 96.2,
+    "expense_date": "2026-02-27",
+    "description": "Apartment share"
+  },
+  {
+    "title": "Textbook",
+    "category": "Education",
+    "amount": 54.99,
+    "expense_date": "2026-02-20",
+    "description": "Database systems"
+  }
+]
+

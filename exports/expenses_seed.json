@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Lunch",
+    "category": "Food",
+    "amount": 21.68,
+    "expense_date": "2026-03-27",
+    "description": "Weekend brunch"
+  },
+  {
+    "title": "Bakery Snacks",
+    "category": "Food",
+    "amount": 10.99,
+    "expense_date": "2026-03-14",
+    "description": "Weekend brunch"
+  },
+  {
+    "title": "Weekly Rent",
+    "category": "Rent",
+    "amount": 511.14,
+    "expense_date": "2026-03-06",
+    "description": "Bond-related adjustment"
+  },
+  {
+    "title": "Internet Bill",
+    "category": "Utilities",
+    "amount": 137.56,
+    "expense_date": "2026-02-18",
+    "description": null
+  },
+  {
+    "title": "Rent Adjustment",
+    "category": "Rent",
+    "amount": 310.15,
+    "expense_date": "2026-02-07",
+    "description": "Weekly room rent"
+  }
+]

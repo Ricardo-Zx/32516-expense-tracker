@@ -1,0 +1,12 @@
+.idea/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+*.db
+.DS_Store
+node_modules/
+dist/
+.env
