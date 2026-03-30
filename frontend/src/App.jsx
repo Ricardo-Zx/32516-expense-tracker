@@ -75,6 +75,7 @@ export default function App() {
   const [editingId, setEditingId] = useState(null);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState({ text: "Loading...", error: false });
+  const [toastVisible, setToastVisible] = useState(true);
 
   const totalSpent = useMemo(
     () => expenses.reduce((sum, item) => sum + item.amount, 0),
@@ -101,6 +102,17 @@ export default function App() {
   function showMessage(text, error = false) {
     setMessage({ text, error });
   }
+
+  useEffect(() => {
+    setToastVisible(true);
+
+    if (busy) return;
+    if (message.error) return;
+    if (!message.text || message.text === "Loading...") return;
+
+    const timer = window.setTimeout(() => setToastVisible(false), 4500);
+    return () => window.clearTimeout(timer);
+  }, [message.text, message.error, busy]);
 
   function resetForm() {
     setForm({ ...emptyForm, expense_date: today });
@@ -137,7 +149,7 @@ export default function App() {
       try {
         await expenseApi.health();
         await refreshAll(emptyFilters);
-        showMessage("Ready.");
+        showMessage("Connected. You can add, edit, delete, and filter expenses.");
       } catch (error) {
         showMessage(`Startup failed: ${error.message}`, true);
       }
@@ -261,8 +273,13 @@ export default function App() {
     <main className="page">
       <header className="hero panel">
         <div className="hero-copy">
-          <p className="eyebrow">Assignment 1 Stack</p>
-          <h1>React + FastAPI + MySQL Expense Tracker</h1>
+          <p className="eyebrow">Assignment 1</p>
+          <h1>Expense Tracker</h1>
+          <div className="stack-badges" aria-label="Tech stack">
+            <span className="badge">React</span>
+            <span className="badge">FastAPI</span>
+            <span className="badge">MySQL</span>
+          </div>
           <p className="subtitle">
             Single-page logbook for recording, filtering, and reviewing spending without page
             reloads.
@@ -270,10 +287,12 @@ export default function App() {
           <p className="filter-summary">{filterSummary}</p>
         </div>
 
-        <div className="hero-highlight" aria-label="Project focus">
-          <span>Current focus</span>
-          <strong>{topCategory}</strong>
-          <small>Top category in the current result set</small>
+        <div className="hero-side">
+          <div className="hero-highlight" aria-label="Project focus">
+            <span>Current focus</span>
+            <strong>{topCategory}</strong>
+            <small>Top category in the current result set</small>
+          </div>
         </div>
       </header>
 
@@ -554,8 +573,19 @@ export default function App() {
         </article>
       </section>
 
-      <p className={`message ${message.error ? "error" : "ok"}`} aria-live="polite">
+      <p
+        className={`toast ${message.error ? "error" : "ok"} ${
+          toastVisible || busy ? "toast-visible" : "toast-hidden"
+        }`}
+        aria-live="polite"
+        aria-hidden={toastVisible || busy ? "false" : "true"}
+      >
         {busy ? "Working..." : message.text}
+        {!message.error && !busy && toastVisible && (
+          <button className="toast-close" type="button" onClick={() => setToastVisible(false)}>
+            Dismiss
+          </button>
+        )}
       </p>
     </main>
   );
